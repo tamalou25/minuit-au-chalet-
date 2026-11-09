@@ -9,6 +9,14 @@ Jeu d’enquête courte sur téléphone, en français. Contenu entièrement fict
 
 Aucune dépendance, aucun compte, aucune clé d’API. Les parties sont gardées en mémoire : si tu arrêtes le serveur, elles sont effacées.
 
+## Aperçu (390 px de large)
+
+| Accueil | Interrogatoire | Preuve multijoueur |
+|---|---|---|
+| ![Accueil](docs/captures/1-accueil.png) | ![Interrogatoire](docs/captures/2-interrogatoire.png) | ![Journal des badges](docs/captures/3-preuve-multijoueur.png) |
+
+Direction visuelle : fond encre, pièces sur papier ivoire, repères rouge brique. Polices incluses dans `public/fonts` (licence SIL OFL) : Playfair Display (titres), Courier Prime (relevés, tampons), Source Sans 3 (texte).
+
 ## Démarrer (Windows)
 
 1. Installe **Node.js 18 ou plus** (version LTS) : https://nodejs.org
@@ -29,9 +37,9 @@ Le terminal affiche aussi l’adresse Wi-Fi, par exemple `http://192.168.1.42:30
 1. Le PC et les téléphones doivent être sur le **même Wi-Fi**.
 2. Au premier lancement, Windows demande d’autoriser Node.js : coche **Réseaux privés** puis **Autoriser**.
    - Si tu as cliqué sur Annuler : Pare-feu Windows Defender → Autoriser une application → coche « Node.js » (réseau privé).
-3. Sur le PC : **Créer une partie entre amis**. La salle affiche un code à 4 lettres et un lien en `http://192.168.x.x:3000/…`.
-4. Sur chaque téléphone : ouvre ce lien (ou l’adresse Wi-Fi puis **Rejoindre une partie** avec le code) et entre un pseudo.
-5. Dès qu’il y a 3 à 8 joueurs, l’hôte appuie sur **Démarrer la partie**.
+3. Sur le PC : dossier *Minuit au chalet* → **Créer une partie**. La salle affiche un code à 4 lettres et un lien en `http://192.168.x.x:3000/…`.
+4. Sur chaque téléphone : ouvre ce lien (ou l’adresse Wi-Fi, puis tape le code dans **Rejoindre avec un code**) et entre un pseudo.
+5. Dès qu’il y a 3 à 8 joueurs, l’hôte appuie sur **Distribuer les fiches**.
 
 Si un téléphone ne charge pas la page : vérifie que le Wi-Fi est en profil « Privé » sur le PC et que l’adresse commence bien par `192.168.` ou `10.`.
 
@@ -39,10 +47,10 @@ Si un téléphone ne charge pas la page : vérifie que le Wi-Fi est en profil «
 
 Chaque onglet garde son propre joueur (stockage par onglet).
 
-1. Onglet 1 : http://localhost:3000 → **Créer une partie entre amis** → pseudo « Hôte ». Note le code (ex. `K7MP`).
+1. Onglet 1 : http://localhost:3000 → dossier *Minuit au chalet* → **Créer une partie** → pseudo « Hôte ». Note le code (ex. `K7MP`).
 2. Onglet 2 : **ouvre un nouvel onglet** (Ctrl+T, pas « Dupliquer l’onglet ») → http://localhost:3000/#/rejoindre/K7MP → pseudo « Joueur 2 ».
 3. Onglet 3 : pareil → pseudo « Joueur 3 ».
-4. Onglet 1 : **Démarrer la partie**.
+4. Onglet 1 : **Distribuer les fiches**.
 
 Astuce : appuie sur F12 puis Ctrl+Maj+M pour avoir un affichage téléphone dans Chrome ou Edge.
 
@@ -57,7 +65,7 @@ Astuce : appuie sur F12 puis Ctrl+Maj+M pour avoir un affichage téléphone dans
 | Révélation | Tous | Résultat, coupable, mobile, chronologie, preuves clés, secrets de chacun |
 
 - Le groupe gagne si **plus de la moitié des votants** désigne le coupable. Sinon, le coupable gagne.
-- **Poser sur la table** : un joueur peut montrer un de ses indices à tout le monde.
+- **Poser sur la table** : un joueur peut montrer une de ses pièces à tout le monde.
 - **Actualiser la page** : le joueur retrouve son rôle et la manche en cours.
 - Joueur parti : l’hôte peut le **marquer comme parti** (onglet Joueurs). Son vote n’est plus attendu.
 

@@ -158,6 +158,33 @@ const CLUES = {
     text: 'Vers 20 h 30, Hugo t’a demandé, l’air de rien : « Elle vaut combien, une médaille comme ça ? Et la cave, Nora la ferme toujours ? »' },
 };
 
+
+// Mise en forme des pièces (présentation uniquement). souvenir = ce que le personnage a vu ou entendu.
+const sv = (at, mode) => ({ form: 'souvenir', at, mode });
+const DOCS = {
+  N_SMS: { form: 'sms', from: 'Hugo', time: '22:31', body: '« Merci pour le badge ! Je te l’ai remis dans la poche de ta doudoune 😉 »', foot: 'Ton téléphone était dans ta chambre : lu seulement à 23 h 50.' },
+  N_RELEVE: { form: 'releve', head: 'Appli du chalet · lecteurs de badge', cols: ['Heure', 'Porte', 'Badge'], rows: [
+    { c: ['19 h 02', 'Cave', 'Nora'] },
+    { c: ['21 h 57', 'Local à bois', 'Nora'] },
+    { c: ['22 h 13', 'Cave', 'Nora'], hot: true },
+    { c: ['23 h 58', 'Cave', 'Nora'], sub: 'descente de groupe' },
+  ] },
+  N_ECORCE: { form: 'scelle', num: 'Coffret de la médaille', fields: [['Contenu', 'Vide'], ['Au fond', 'Fragments d’écorce blanche (bouleau)', true], ['À 19 h', 'Coffret impeccable']] },
+  I_PHOTO1: { form: 'photo', scene: 'escalier', stamp: '22:05', caption: 'Hugo au pied de l’escalier de la cave, le badge de Nora (porte-clés sapin) à la main. Pas de bois dans les bras.' },
+  I_PHOTO2: (p) => ({ form: 'photo', scene: 'terrasse', people: p.has('malik') ? 2 : 1, stamp: '22:12', caption: `La terrasse sous la neige : Nora dans le jacuzzi${p.has('malik') ? ' avec Malik' : ', seule'}. Personne d’autre autour.` }),
+  I_TABLETTE: { form: 'ecran', app: 'Messagerie · tablette du salon', account: 'hugo.marchetti', thread: [['Collectionneur_74', '« Toujours OK pour la médaille de 68 ? 15 000 € en liquide lundi, comme convenu. »']] },
+  H_ESTIMATION: { form: 'ecran', app: 'Mail · tablette de Nora', account: 'Nora Vasseur', thread: [['Cabinet d’expertise', '« Estimation de la médaille Odette Vasseur : 12 000 €. »']], foot: 'Daté du mois dernier. Nora n’en a parlé à personne.' },
+  J_TABLETTE: { form: 'ecran', app: 'Messagerie · tablette du salon', account: 'hugo.marchetti', time: '20:00', thread: [['Collectionneur_74', '« Une médaille de 68, authentique ? »'], ['hugo.marchetti', '« Oui. Ce week-end. »', true]] },
+  L_CAVE: { form: 'constat', head: 'Ce que tu sais du chalet', fields: [['Portes de la cave', 'Une seule', true], ['Soupirail', 'Grillagé'], ['Pour entrer', 'Le badge, obligatoirement', true]] },
+  H_SACHA: sv('22 h 20', 'vu'), H_MALIK: sv('Après-midi', 'vu'), H_INES: sv('19 h 10', 'vu'),
+  H_BASILE: sv('Après-midi', 'entendu'), H_LEA: sv('Au téléphone', 'entendu'), H_NORA_TEL: sv('Après-midi', 'entendu'),
+  M_JACUZZI: sv('21 h 55 – 22 h 35', 'vu'), M_DETTES: sv('Cette semaine', 'entendu'), M_LUMIERE: sv('22 h 20', 'vu'),
+  S_GRINCEMENT: sv('22 h 13', 'entendu'), S_BALCON: sv('21 h 45 – 22 h 30', 'vu'), S_POCHE: sv('22 h 20', 'vu'),
+  L_FENETRE: sv('22 h 00 – 22 h 30', 'vu'), L_ENTREE: sv('22 h 31', 'vu'),
+  B_BOULEAU: sv('22 h 00', 'vu'), B_BRIQUET: sv('22 h 02 – 22 h 40', 'vu'), B_FONDUE: sv('22 h 15', 'vu'),
+  J_SOUPIRAIL: sv('22 h 13', 'vu'), J_QUESTION: sv('20 h 30', 'entendu'),
+};
+
 const REVEAL = {
   motive:
     "Hugo doit 18 000 € à des sites de paris en ligne. Un collectionneur lui avait promis 15 000 € en liquide pour la médaille d'Odette, livrable lundi.",
@@ -208,7 +235,7 @@ function cluesFor(charId, present) {
 
 function clueView(id, present) {
   const c = CLUES[id];
-  return { id, title: c.title, text: resolve(c.text, present), round: c.round };
+  return { id, title: c.title, text: resolve(c.text, present), round: c.round, doc: resolve(DOCS[id], present) || null };
 }
 
 function shuffle(arr) {
@@ -261,6 +288,6 @@ function charName(id) {
 }
 
 module.exports = {
-  CULPRIT, CAST, INTRO, CARDS, CLUES, REVEAL,
+  CULPRIT, CAST, INTRO, CARDS, CLUES, DOCS, REVEAL,
   presentSet, cluesFor, clueView, assign, castView, cardView, charName, resolve,
 };

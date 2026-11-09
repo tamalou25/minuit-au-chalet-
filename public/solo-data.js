@@ -172,3 +172,26 @@ window.SOLO_CASE = {
     ],
   },
 };
+
+// Mise en forme des pièces (présentation uniquement : le texte des indices ne change pas).
+(function (C) {
+  const DOCS = {
+    F_RAPPORT: { form: 'rapport', head: 'Rapport de service · Hôtel Valmont', fields: [
+      ['Heure', '22 h 05', true], ['Lieu', 'Couloir de service, chariot à linge n° 3'], ['Objet', 'La Comtesse, sous des draps propres'], ['Remarque', 'Chariot immobile depuis 21 h'],
+    ], sign: 'La femme de chambre' },
+    F_PROGRAMME: { form: 'releve', cols: ['Heure', 'Au programme'], rows: [
+      { c: ['20 h 30', 'Première partie'] }, { c: ['21 h 30', 'Entracte — jusqu’à 21 h 50'], hot: true }, { c: ['21 h 50', 'Seconde partie'], sub: 'annulée' },
+    ] },
+    C_SERRURE: { form: 'releve', head: 'Lecteur de carte · relevé automatique', cols: ['Heure', 'Accès', 'Action'], rows: [
+      { c: ['21 h 29', 'Carte Anton Weiss', 'Sortie'] }, { c: ['21 h 38', 'PASSE GÉNÉRAL', 'Ouverture'], hot: true }, { c: ['21 h 50', 'Carte Anton Weiss', 'Ouverture'] },
+    ] },
+    C_DETTE: { form: 'note', body: 'Élise, je te réglerai tes six mois de cachets après la tournée, promis.', sign: '— A.', foot: 'Trouvé sur la coiffeuse de la loge.' },
+    C_GANT: { form: 'scelle', num: 'Pièce n° 1', fields: [['Objet', 'Gant de coton blanc, très fin'], ['Taille', 'S', true], ['Broderie', 'Aucune', true], ['Trouvé', 'Au pied du chariot n° 3']] },
+    C_TICKET: { form: 'ticket', head: 'BAR DU VALMONT', lines: [['Heure', '21 h 34', true], ['1 cognac', ''], ['Compte', 'personnel'], ['Signé', 'V. Lenoir', true]] },
+    C_NOTE_TERRASSE: { form: 'affiche', big: 'Orage', body: 'Terrasse fermée et verrouillée à 21 h 15. Clé à la réception.', foot: 'La réception confirme : personne n’a demandé la clé.' },
+    C_PARFUM: { form: 'constat', head: 'Constat · Vestiaire du personnel', fields: [['Veste de Victor', 'Sur son crochet'], ['Passe', 'Poche gauche', true], ['Odeur', 'Parfum poudré d’iris', true]] },
+    C_MALLETTE: { form: 'inventaire', head: 'Mallette d’expertise · C. Roux', items: [['Loupe', 'présente'], ['Lampe UV', 'présente'], ['Mètre', 'présent'], ['Gants coton, taille S', '1 sur 2', true]] },
+    C_CAMION: { form: 'bon', head: 'Bon de transport', fields: [['Enlèvement', '1 caisse pour instrument'], ['Départ', 'Minuit', true], ['Donneuse d’ordre', 'C. Roux', true], ['Sur place depuis', '21 h']] },
+  };
+  for (const [id, doc] of Object.entries(DOCS)) C.clues[id].doc = doc;
+})(window.SOLO_CASE);
