@@ -1,0 +1,15 @@
+{
+  "name": "dossier-minuit",
+  "version": "0.1.0",
+  "description": "Prototype jouable de Dossier Minuit : enquêtes courtes sur téléphone (solo et entre amis).",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/verif.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}
